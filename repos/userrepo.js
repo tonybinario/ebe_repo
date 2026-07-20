@@ -36,7 +36,7 @@ class UserRepository {
     async createUser(userData) {
         // Übergib einfach das Objekt. Sequelize kümmert sich um optionale Felder
         // und setzt die Defaults (z.B. role: 'user', oder false für die Booleans)
-        return await User.create(userData);
+        return User.create(userData);
     }
 }
 

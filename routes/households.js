@@ -10,17 +10,17 @@ router.get('/', async (req, res) => {
         const households = await householdRepository.getAllHouseholds(includeUser);
         res.json(households);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({error: err.message});
     }
 });
 
 
-router.get('/flat', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const households = await householdRepository.getAllHouseholdsFlat();
-        res.json(households);
+        const user = await householdRepository.createHousehold(req.body);
+        res.status(201).json(user);
     } catch (err) {
-        res.status(500).send(err.message);
+        res.status(500).json({error: err.message});
     }
 });
 
@@ -28,10 +28,10 @@ router.get('/flat', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const household = await householdRepository.getHouseholdById(req.params.id);
-        if (!household) return res.status(404).json({ error: "Haushalt nicht gefunden" });
+        if (!household) return res.status(404).json({error: "Haushalt nicht gefunden"});
         res.json(household);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({error: err.message});
     }
 });
 

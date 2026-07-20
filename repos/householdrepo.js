@@ -6,6 +6,12 @@ class HouseholdRepository {
         this.sequelize = db.getInstance();
     }
 
+    async createHousehold(householdData) {
+        // Übergib einfach das Objekt. Sequelize kümmert sich um die Benennung (CamelCase -> Snake_Case)
+        // und setzt den Default-Wert für isActive automatisch auf true.
+        return Household.create(householdData);
+    }
+
     // Holt alle Haushalte flach als reine JSON-Objekte
     async getAllHouseholdsFlat() {
         return await Household.findAll({ raw: true });
@@ -30,13 +36,6 @@ class HouseholdRepository {
                 buildingId: buildingId // Sequelize mappt das automatisch auf building_id
             }
         });
-    }
-
-    // Erstellt einen neuen Haushalt
-    async createHousehold(householdData) {
-        // Übergib einfach das Objekt. Sequelize kümmert sich um die Benennung (CamelCase -> Snake_Case)
-        // und setzt den Default-Wert für isActive automatisch auf true.
-        return Household.create(householdData);
     }
 }
 

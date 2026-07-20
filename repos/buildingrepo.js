@@ -6,8 +6,8 @@ class BuildingRepository {
         this.sequelize = db.getInstance();
     }
 
-    async getAllBuildingsFlat() {
-        return await Building.findAll({ raw: true });
+    async createBuilding(buildingData){
+        return Building.create(buildingData);
     }
 
     async getAllBuildings() {
