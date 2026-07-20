@@ -1,0 +1,65 @@
+@baseUrl = https://localhost:443/api
+
+### ==========================================
+### 1. BUILDINGS
+### ==========================================
+
+# Alle Gebäude abrufen
+GET {{baseUrl}}/buildings
+
+### Neues Gebäude erstellen
+POST {{baseUrl}}/buildings
+Content-Type: application/json
+
+{
+  "address": "Strasse der sauberen Daten 1",
+  "latitude": 52.5200,
+  "longitude": 13.4050,
+  "radiusMeters": 100.0,
+  "buildingToken": "token_secret_abc_1",
+  "maxCapacity": 120,
+  "currentCount": 1
+}
+
+### Einzelnes Gebäude per ID abrufen
+GET {{baseUrl}}/buildings/1
+
+
+### ==========================================
+### 2. HOUSEHOLDS
+### ==========================================
+
+# Alle Haushalte eines bestimmten Gebäudes abrufen
+GET {{baseUrl}}/buildings/1/households
+
+### Neuen Haushalt anlegen
+POST {{baseUrl}}/households
+Content-Type: application/json
+
+{
+  "buildingId": 1,
+  "apartmentName": "Apt 101",
+  "isActive": true
+}
+
+
+### ==========================================
+### 3. USERS
+### ==========================================
+
+# Alle Benutzer abrufen
+GET {{baseUrl}}/users
+
+# Einzelnen Benutzer per ID abrufen
+GET {{baseUrl}}/users/1
+
+### Neuen Benutzer registrieren (1:1 mit Haushalt)
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "householdId": 1,
+  "email": "user.1@ebe-projekt.edu",
+  "isEmailVerified": true,
+  "isBuildingAdmin": true
+}

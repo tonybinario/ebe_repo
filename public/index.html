@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine HTML Testseite</title>
+    <style>
+        /* Einfaches, sauberes Design */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0056b3;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004085;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Erfolg! Deine HTML-Testseite läuft.</h1>
+    <p>Dieses Grundgerüst enthält bereits validiertes HTML5, ein eingebettetes CSS-Layout und eine interaktive JavaScript-Funktion.</p>
+
+    <h2>Wichtige Elemente zum Testen:</h2>
+    <ul>
+        <li><strong>Semantik:</strong> Überschriften, Absätze und Listen.</li>
+        <li><strong>Styling:</strong> CSS sorgt für Abstände, Boxen und Farben.</li>
+        <li><strong>Interaktion:</strong> Der Button unten reagiert auf Klicks.</li>
+    </ul>
+
+    <hr>
+
+    <!-- JavaScript Interaktion -->
+    <button onclick="zeigeNachricht()">Klick mich!</button>
+    <p id="dynamischerText" style="margin-top: 15px; font-weight: bold; color: green;"></p>
+</div>
+
+<script>
+    // Einfache Funktion für den Button-Klick
+    function zeigeNachricht() {
+        document.getElementById("dynamischerText").innerText = "Hallo Welt! Das JavaScript funktioniert einwandfrei. 🎉";
+    }
+</script>
+
+</body>
+</html>
