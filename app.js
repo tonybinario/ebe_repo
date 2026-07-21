@@ -3,30 +3,28 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-const { Building, Household, User } = require("./models/index");
-// Deine Router-Imports können genau so bleiben wie sie sind!
-const usersRouter = require('./routes/users');
-const buildingsRouter = require('./routes/buildings');
-const householdsRouter = require('./routes/households');
+const { Building, Household, User } = require("./models");
+const usersRouter = require('./routes/usersRouter');
+const buildingsRouter = require('./routes/buildingRouter');
+const householdsRouter = require('./routes/householdRouter');
+const authRouter = require('./routes/authRouter')
 
 const app = express();
 
 // 1. Globale Middlewares
 app.use(express.json());
 
-// // CORS aktivieren (Wichtig, falls dein Frontend auf einem anderen Port/Domain läuft)
-// // Falls du das 'cors' Paket nicht installieren willst, reichen diese Header:
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//     if (req.method === 'OPTIONS') {
-//         return res.sendStatus(200);
-//     }
-//     next();
-// });
+// CORS aktivieren (Wichtig, falls dein Frontend auf einem anderen Port/Domain läuft)
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
 
-// 2. Frontend Statisch ausliefern (Wichtig für das Smartphone!)
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
@@ -34,6 +32,7 @@ app.use(express.static(publicPath));
 app.use('/api/users', usersRouter);
 app.use('/api/buildings', buildingsRouter);
 app.use('/api/households', householdsRouter);
+app.use('/api/auth', authRouter);
 
 // 4. 404-Handler (wenn keine Route matcht)
 app.use((req, res) => {

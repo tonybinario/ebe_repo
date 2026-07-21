@@ -1,6 +1,7 @@
 const Building = require('./BuildingModel');   // Pfade an deine genauen Dateinamen anpassen
 const Household = require('./HouseholdModel');
 const User = require('./UserModel');
+const Token = require('./VerificationToken')
 
 // ==========================================
 //  HIER WERDEN DIE ASSOZIATIONEN DEFINIERT
@@ -33,5 +34,6 @@ User.belongsTo(Household, {
 module.exports = {
     Building,
     Household,
-    User
+    User,
+    Token
 };

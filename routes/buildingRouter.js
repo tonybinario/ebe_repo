@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const buildingRepository = require('../repos/buildingrepo');
+const buildingRepository = require('../repos/buildingRepo');
 
 // GET /api/buildings
 router.get('/', async (req, res) => {

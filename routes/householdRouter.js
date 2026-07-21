@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const householdRepository = require('../repos/householdrepo');
+const householdRepository = require('../repos/householdRepo');
 
 // GET /api/households
 // GET /api/households

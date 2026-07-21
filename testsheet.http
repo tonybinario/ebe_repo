@@ -67,3 +67,30 @@ Content-Type: application/json
   "isEmailVerified": true,
   "isBuildingAdmin": true
 }
+
+### Variablen für den Test
+@testEmail = test.gruender9@example.com
+
+### ==========================================
+### SCHRITT 1: Magic Link / Verifizierung anfordern
+### ==========================================
+# Generiert das 15-minütige Verifizierungs-JWT (0 DB-Zugriffe)
+POST {{baseUrl}}/auth/request-link
+Content-Type: application/json
+
+{
+  "email": "{{testEmail}}"
+}
+
+### ==========================================
+### SCHRITT 2: Token einlösen & Session-JWT erhalten
+### ==========================================
+# Kopiere das lange JWT aus Mailtrap/dem E-Mail-Link (beginnt mit eyJhbGci...):
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QuZ3J1ZW5kZXI5QGV4YW1wbGUuY29tIiwicHVycG9zZSI6ImVtYWlsLXZlcmlmaWNhdGlvbiIsImlhdCI6MTc4NDYxOTg4NywiZXhwIjoxNzg0NjIwNzg3fQ.ciSoSQbI2UzQySCr-jvPf8w_opmwwuq-Te0uFNx95z0
+
+POST {{baseUrl}}/auth/verify-email
+Content-Type: application/json
+
+{
+  "token": "{{token}}"
+}

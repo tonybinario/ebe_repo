@@ -1,14 +1,19 @@
 const db = require('../db/dbconnection');
-const {User} = require('../models/index'); // Pfad zu deinem eben definierten User-Model anpassen
+const {User} = require('../models'); // Pfad zu deinem eben definierten User-Model anpassen
 
 class UserRepository {
     constructor() {
         this.sequelize = db.getInstance();
     }
+/**
+* @param {string} email
+* @returns {Promise<User|null>}
+ * */
+    async findByEmail(email){
 
-    // Holt alle User flach (als reine JSON-Objekte ohne Sequelize-Instanz-Methoden)
-    async getAllUsersFlat() {
-        return await User.findAll({ raw: true });
+        return await User.findOne({
+            where: {email: email}
+        });
     }
 
     // Holt alle User (optional direkt mit dem verknüpften Haushalt)
@@ -30,6 +35,14 @@ class UserRepository {
                 householdId: householdId // Sequelize wandelt das automatisch in household_id = $1 um
             }
         });
+    }
+
+    async updateEmailVerified(email) {
+        // Führt direkt das SQL-UPDATE aus
+        return await User.update(
+            { isEmailVerified: true },
+            { where: { email: email } }
+        );
     }
 
     // Erstellt einen neuen User

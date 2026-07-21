@@ -1,5 +1,5 @@
 const db = require('../db/dbconnection');
-const {Household} = require('../models/index'); // Pfad zu deinem Household-Model anpassen
+const {Household} = require('../models'); // Pfad zu deinem Household-Model anpassen
 
 class HouseholdRepository {
     constructor() {

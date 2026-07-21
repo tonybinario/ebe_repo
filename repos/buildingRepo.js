@@ -1,5 +1,5 @@
 const db = require('../db/dbconnection');
-const {Building} = require('../models/index'); // Das Model aus Schritt 2
+const {Building} = require('../models'); // Das Model aus Schritt 2
 
 class BuildingRepository {
     constructor() {

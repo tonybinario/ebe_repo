@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userRepository = require('../repos/userrepo'); // Pfad zu deiner DB-Klasse anpassen!
+const userRepository = require('../repos/userRepo'); // Pfad zu deiner DB-Klasse anpassen!
 
 router.get('/', async function (req, res, next) {
     try {
